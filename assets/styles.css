@@ -17,3 +17,98 @@ body {
     font-size: 30px;
 }
 
+.search {
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(to right top, blue, lightblue);
+    color:beige;
+    padding: 20px;
+    text-align: center;
+}
+
+#search-btn {
+    background-color: coral;
+    color:beige;
+    padding: 3px;
+    margin: 1px;
+    border-radius: 8px;
+    height: 50px;
+}
+
+#search-city {
+    width: 75%;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.city-history-btn {
+    background-color: aliceblue;
+    border-radius: 8px;
+    margin: 2%;
+    height: 35px;
+}
+
+.forecast-today {
+    background-color: lightskyblue;
+    padding: 15px;
+    margin: 2px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.forecast-today img {
+    margin: auto;
+}
+
+.five-day {
+    display: flex;
+}
+
+.forecast-card {
+    background-color: lightskyblue;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:10px;
+    margin: 2px;
+    color: aliceblue;
+    min-height: 200px;
+    min-width: 150px;
+    border-radius: 8px;
+}
+
+.date {
+    text-align: center;
+}
+
+.right {
+    margin-right: 5px;
+}
+
+#icon {
+    width: 100px;
+    height: 100px;
+}
+
+#previously-searched button {
+    width: 75%;
+    font-weight: bold;
+}
+
+.city-history-btn {
+    background-color: coral;
+    border-radius: 8px;
+    margin: 2px;
+    height: 30px;
+}
+
+@media screen and (width <= 980px) {
+    .forecast card {
+        min-width: 200px;
+        min-height: 300px;
+        max-width: 200px;
+        max-height: 300px;
+    }
+}
