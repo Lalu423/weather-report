@@ -1,74 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day Weather Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/styles.css">
-    <title>Current Weather</title>
+
 </head>
+
 <body>
-<div id="top-banner">
-    <header id="header-text">
-        <h1>Weather Report</h1>
-    </header>
-</div>
-<aside id="search container">
-    <h2>Search for a City:</h2>
-    <input id="input" type="text" placeholder="Enter City Name"><br>
-    <button id="submitbtn" class="search">Submit</button>
-</aside>
-<section id="btnSpots">
-    
-</section>
-<div class="current-details">
-    <section class="text" id="today">
-        <h2 id="city-name"><span id="date"></span></h2>
-        <p id="temp"></p>
-        <p id="wind"></p>
-        <p id="humid"></p>
-        <p id="index"></p>
-    </section>
-</div>
-<div class="forecast">
-    <h3 id="fiveday-cast" class="fiveday">5-Day Forecast:</h3>
-    <section class="card-border">
-        <p id="day-one"></p>
-        <p id="temp-one"></p>
-        <p id="wind-one"></p>
-        <p id="humid-one"></p>
-        <img id="img-one" src="">
-    </section>
-    <section class="card-border">
-        <p id="day-two"></p>
-        <p id="temp-two"></p>
-        <p id="wind-two"></p>
-        <p id="humid-two"></p>
-        <img id="img-two" src="">
-    </section>
-    <section class="card-border">
-        <p id="day-three"></p>
-        <p id="temp-three"></p>
-        <p id="wind-three"></p>
-        <p id="humid-three"></p>
-        <img id="img-three" src="">
-    </section>
-    <section class="card-border">
-        <p id="day-four"></p>
-        <p id="temp-four"></p>
-        <p id="wind-four"></p>
-        <p id="humid-four"></p>
-        <img id="img-four" src="">
-    </section>
-    <section class="card-border">
-        <p id="day-five"></p>
-        <p id="temp-five"></p>
-        <p id="wind-five"></p>
-        <p id="humid-five"></p>
-        <img id="img-five" src="">
-    </section>
-</div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+    <script>dayjs().format()</script>
+
     <script src="./assets/script.js"></script>
 </body>
+
 </html>
