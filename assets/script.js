@@ -53,7 +53,7 @@ function searchWeather(city) {
 //fetch 5 day forecast and apply to each day
 function getWeather() {
     console.log(citySearch);
-    var cityData = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&appid=98d90f1adb1cdb825805eec28572ccfd`;
+    var cityData = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&units=imperial&appid=98d90f1adb1cdb825805eec28572ccfd`;
 
     fetch(cityData)
         .then((response) => {
@@ -98,7 +98,7 @@ function getWeather() {
 }
 //fetch current day weather
 function curWeather(citySearch) {
-    var rnWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=98d90f1adb1cdb825805eec28572ccfd`;
+    var rnWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=imperial&appid=98d90f1adb1cdb825805eec28572ccfd`;
     fetch(rnWeather)
         .then((response) => {
             return response.json();
