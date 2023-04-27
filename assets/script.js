@@ -29,6 +29,11 @@ function renderHistory() {
         btn.text(cityHistory[i]);
         btn.attr("data-city", cityHistory[i]);
         btn.addClass("city-history-btn");
+        btn.val(cityHistory[i])
+        btn.click(function (event) {
+            console.log(event.target.value)
+            searchWeather (event.target.value)
+        })
         $("#previously-searched").append(btn);
     }
 }
@@ -41,8 +46,8 @@ function saveHistory(searchedName) {
     }
 }
 
-function searchWeather() {
-    citySearch = $("#search-city").val().trim();
+function searchWeather(city) {
+    citySearch = $("#search-city").val().trim() || city;
     getWeather();
 }
 
@@ -75,7 +80,7 @@ function getWeather() {
             .children(".icon")
             .attr(
               "src",
-              `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`
+              `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png`
             );
           $(`#f${j}`)
             .children(".temp")

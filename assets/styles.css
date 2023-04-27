@@ -87,10 +87,13 @@ header {
     margin-right: 5px;
 }
 
-#icon {
+.icon, #icon {
     width: 100px;
     height: 100px;
 }
+
+
+
 
 #previously-searched button {
     width: 75%;
