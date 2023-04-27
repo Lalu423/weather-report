@@ -10,7 +10,7 @@ var citySearch;
 var cityHistory = [];
 // calls function on page load
 init();
-
+// creates search history
 function init() {
     var storedCities = JSON.parse(localStorage.getItem("City"));
     if (!storedCities) {
@@ -23,7 +23,7 @@ function init() {
 }
 
 function renderHistory() {
-    $("previously-searched").empty();
+    $("search-history").empty();
     for (var i = 0; i < cityHistory.length; i++) {
         var btn = $("<button>");
         btn.text(cityHistory[i]);
@@ -32,9 +32,9 @@ function renderHistory() {
         btn.val(cityHistory[i])
         btn.click(function (event) {
             console.log(event.target.value)
-            searchWeather (event.target.value)
+            searchWeather(event.target.value)
         })
-        $("#previously-searched").append(btn);
+        $("#search-history").append(btn);
     }
 }
 
@@ -45,72 +45,72 @@ function saveHistory(searchedName) {
         localStorage.setItem("City", JSON.stringify(cityHistory));
     }
 }
-
+//function for input value
 function searchWeather(city) {
     citySearch = $("#search-city").val().trim() || city;
     getWeather();
 }
-
+//fetch 5 day forecast and apply to each day
 function getWeather() {
     console.log(citySearch);
-    var cityData = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&cnt=40&units=imperial&appid=98d90f1adb1cdb825805eec28572ccfd`;
+    var cityData = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&appid=98d90f1adb1cdb825805eec28572ccfd`;
 
     fetch(cityData)
-      .then((response) => {
-        
-        return response.json();
-      })
-      .then((data) => {
-       console.log(data);
-        var searchedName = data.city.name;
-        saveHistory(searchedName);
+        .then((response) => {
 
-        let i = 0;
-        console.log(forecastDay);
-        for (let j = 1; j < 6; j++) {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            var searchedName = data.city.name;
+            saveHistory(searchedName);
 
-          console.log(j, i);
-          console.log(data.list[i]);
-          $(`#f${j}`)
-            .children(".date")
-            .text(
-              dayjs(data.list[i].dt_txt.split(" ")[0]).format("MM/DD/YYYY")
-            );
-          $(`#f${j}`)
-            .children(".icon")
-            .attr(
-              "src",
-              `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png`
-            );
-          $(`#f${j}`)
-            .children(".temp")
-            .text("Temp: " + data.list[i].main.temp + "F");
-          $(`#f${j}`)
-            .children(".wind")
-            .text("Wind: " + data.list[i].wind.speed);
-          $(`#f${j}`)
-            .children(".humidity")
-            .text("Humidity: " + data.list[i].main.humidity + "%");
-          i += 8;
-        }
-      });
+            let i = 0;
+            console.log(forecastDay);
+            for (let j = 1; j < 6; j++) {
+
+                console.log(j, i);
+                console.log(data.list[i]);
+                $(`#d${j}`)
+                    .children(".date")
+                    .text(
+                        dayjs(data.list[i].dt_txt.split(" ")[0]).format("MM/DD/YYYY")
+                    );
+                $(`#d${j}`)
+                    .children(".icon")
+                    .attr(
+                        "src",
+                        `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}.png`
+                    );
+                $(`#d${j}`)
+                    .children(".temp")
+                    .text("Temp: " + data.list[i].main.temp + "F");
+                $(`#d${j}`)
+                    .children(".wind")
+                    .text("Wind: " + data.list[i].wind.speed);
+                $(`#d${j}`)
+                    .children(".humidity")
+                    .text("Humidity: " + data.list[i].main.humidity + "%");
+                i += 8;
+            }
+        });
     curWeather(citySearch);
-  }
-
+}
+//fetch current day weather
 function curWeather(citySearch) {
-    var rnWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=imperial&appid=98d90f1adb1cdb825805eec28572ccfd`;
+    var rnWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&appid=98d90f1adb1cdb825805eec28572ccfd`;
     fetch(rnWeather)
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        city.text(data.name + " (" + dayjs().format("MM/DD/YYYY") + ")");
-        boxIcon.attr("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            city.text(data.name + " (" + dayjs().format("MM/DD/YYYY") + ")");
+            boxIcon.attr("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
 
-        cityTemp.text("Temp: " + data.main.temp + "F");
-        cityWind.text("wind Spd: " + data.wind.speed);
-        cityHumidity.text("Humidity: " + data.main.humidity + "%");
-    });
+            cityTemp.text("Temp: " + data.main.temp + "F");
+            cityWind.text("wind Spd: " + data.wind.speed);
+            cityHumidity.text("Humidity: " + data.main.humidity + "%");
+        });
 }
 
 function buttonSearch(event) {
@@ -119,25 +119,4 @@ function buttonSearch(event) {
 }
 
 $("#search-btn").on("click", searchWeather);
-$("previously-searched").on("click", buttonSearch);
-
-//gecoding API example from class 
-//function getCity(inputFromField) {
-  //  var url = "http://api.openweathermap.org/geo/1.0/direct?" + inputFromField + "q={city name},{state code},{country code}&limit={limit}&appid={API key"
-    //fetch(url){
-    // ...
-    //}
-    //.then(data){
-    //data=[]
-  //  var lat = data[0].lat;
-   // var lon = data[0].lon
-    //getCurrentWeather(lat, lon);
-    //}
-//}
-
-//current weather
-//function getCurrentWeather(lat, lon) {
-    //https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-//}
-
-//getCity
+$("search-history").on("click", buttonSearch);
