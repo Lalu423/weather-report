@@ -8,9 +8,37 @@ var boxIcon = $("#icon");
 var citySearch;
 var cityHistory = [];
 
+init();
 
+function init() {
+    var storedCities = JSON.parse(localStorage.getItem("City"));
+    if (!storedCities) {
+        cityHistory = [];
+    }
+    else {
+        cityHistory = storedCities;
+    }
+    renderHistory();
+}
 
+function renderHistory() {
+    $("previously-searched").empty();
+    for (var i = 0; i < cityHistory.length; i++) {
+        var btn = $("<button>");
+        btn.text(cityHistory[i]);
+        btn.attr("data-city", cityHistory[i]);
+        btn.addClass("city-history-btn");
+        $("#previously-searched").append(btn);
+    }
+}
 
+function saveHistory(searchedName) {
+    var cityHistory = JSON.parse(localStorage.getItem("City")) || [];
+    if (!cityHistory.find((city) => city === searchedName)) {
+        cityHistory.push(searchedName);
+        localStorage.setItem("City", JSON.stringify(cityHistory));
+    }
+}
 
 function searchWeather() {
     citySearch = $("#search-city").val().trim();
@@ -29,7 +57,7 @@ function getWeather() {
       .then((data) => {
        console.log(data);
         var searchedName = data.city.name;
-        savehistory(searchedName);
+        saveHistory(searchedName);
 
         let i = 0;
         console.log(forecastDay);
@@ -63,8 +91,6 @@ function getWeather() {
     curWeather(citySearch);
   }
 
-
-
 function curWeather(citySearch) {
     var rnWeather = `https://api.openweathermap.org/data/2.5/weather?q=${citySearch}&units=imperial&appid=98d90f1adb1cdb825805eec28572ccfd`;
     fetch(rnWeather)
@@ -87,7 +113,7 @@ function buttonSearch(event) {
 }
 
 $("#search-btn").on("click", searchWeather);
-
+$("previously-searched").on("click", buttonSearch);
 
 
 
