@@ -1,3 +1,4 @@
+// Set global variables
 var cityName = $("#search-city");
 var city = $("#city-name");
 var cityTemp = $("#temp");
@@ -7,7 +8,7 @@ var forecastDay = $(".forecast");
 var boxIcon = $("#icon");
 var citySearch;
 var cityHistory = [];
-
+// calls function on page load
 init();
 
 function init() {
@@ -115,9 +116,7 @@ function buttonSearch(event) {
 $("#search-btn").on("click", searchWeather);
 $("previously-searched").on("click", buttonSearch);
 
-
-
-//gecoding API
+//gecoding API example from class 
 //function getCity(inputFromField) {
   //  var url = "http://api.openweathermap.org/geo/1.0/direct?" + inputFromField + "q={city name},{state code},{country code}&limit={limit}&appid={API key"
     //fetch(url){
