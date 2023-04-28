@@ -1,7 +1,7 @@
 # weather-report
 
 ## Description 
-This app is a 5-day weather forecast. Users will be able to search for any city and the current and next 5 days of weather will be presented to the user. 
+This app is a 5-day weather forecast. Users will be able to search for any city and display the current weather along with the next 5 days of the weather forecast. 
 The user will also be able to see their search history and click on previously searched cities to update the forecast. 
 This app uses the latest versions of bootstrap and Jquery. I utilized bootstrap to style the page and jquery to apply fetch functions from openweathermap.org to acquire the necessary data.
 
